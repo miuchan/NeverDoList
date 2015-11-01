@@ -1,0 +1,56 @@
+<% include common/header %>
+    <div class="container">
+      <div class="row">
+        <div class="col s3">
+          <% include common/aside %>
+        </div>
+
+        <div class="col s9">
+          <div class="collection z-depth-2">
+            <div class="collection-item">
+              <div class="row">
+                <p class="left-align col s10">
+                  <input type="checkbox" id="test1" />
+                  <label for="test1">周三下午开会</label>
+                </p>
+                <a href="#" class="right col s1"><i class="material-icons">delete</i></a>
+                <a href="#" class="right col s1"><i class="material-icons">star_border</i></a>
+              </div>
+            </div>
+            <div class="collection-item">
+              <p>
+                <input type="checkbox" id="test2" />
+                <label for="test2">周三下午开会</label>
+              </p>
+            </div>
+            <div class="collection-item">
+              <p>
+                <input type="checkbox" id="test3" />
+                <label for="test3">周三下午开会</label>
+              </p>
+            </div>
+            <div class="collection-item">
+              <p>
+                <input type="checkbox" id="test4" />
+                <label for="test4">周三下午开会</label>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="/add">
+          <i class="material-icons">add</i>
+        </a>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="javascripts/materialize.min.js"></script>
+    <script type="text/javascript">
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+      });
+    </script>
+  </body>
+</html>
