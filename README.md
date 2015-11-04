@@ -8,8 +8,6 @@ A simple TODO list
     
 ### Usage
 
-    ``` bash
     git clone https://github.com/miuchan/NeverDoList
     cd NeverDoList
     node app
-    ```
