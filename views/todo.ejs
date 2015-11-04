@@ -7,34 +7,24 @@
 
         <div class="col s9">
           <div class="collection z-depth-2">
+          <% todoList.forEach(function (todo) { %>
             <div class="collection-item">
               <div class="row">
-                <p class="left-align col s10">
-                  <input type="checkbox" id="test1" />
-                  <label for="test1">周三下午开会</label>
+                <p class="left col s10">
+                  <input type="checkbox" id="<%= todo._id %>" />
+                  <label for="<%= todo._id %>" style="color:#333"><%= todo.content %></label>
                 </p>
-                <a href="#" class="right col s1"><i class="material-icons">delete</i></a>
-                <a href="#" class="right col s1"><i class="material-icons">star_border</i></a>
+                <h6 class="left" style="margin-left:44px"><%= todo.deadline%></h6>
+                  <a href="#" class="right col s1"><i class="material-icons">delete</i></a>
+                  <a href="#" class="right col s1"><i class="material-icons">
+                <% if(todo.stared) {%>
+                  star
+                <%} else { %>
+                  star_border
+                <%}%></i></a>
               </div>
             </div>
-            <div class="collection-item">
-              <p>
-                <input type="checkbox" id="test2" />
-                <label for="test2">周三下午开会</label>
-              </p>
-            </div>
-            <div class="collection-item">
-              <p>
-                <input type="checkbox" id="test3" />
-                <label for="test3">周三下午开会</label>
-              </p>
-            </div>
-            <div class="collection-item">
-              <p>
-                <input type="checkbox" id="test4" />
-                <label for="test4">周三下午开会</label>
-              </p>
-            </div>
+          <% }) %>
           </div>
         </div>
 
