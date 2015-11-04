@@ -1,7 +1,7 @@
 NeverDoList
 ===========
 
-A simple TODO list
+A simple TODO List.
 
 ### Required
     MongoDB (default uri is mongodb://localhost:27017/neverdolist, you can change in NeverDoList/models/db.js)
