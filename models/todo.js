@@ -32,12 +32,18 @@ Todo.prototype.add = function (obj, callback) {
 Todo.prototype.get = function (condition, callback) {
   todoModel.find(condition).sort({createAt:-1}).exec(callback);
 };
-Todo.prototype.delete = function() {
-  // body...
+Todo.prototype.delete = function(_id, callback) {
+  todoModel.update({ _id: _id}, { $set: { deleted: true}}, callback);
 }
 
-Todo.prototype.star = function() {
-  // body...
+Todo.prototype.done = function(_id, callback) {
+  todoModel.update({ _id: _id}, { $set: { done: true}}, callback);
+}
+
+Todo.prototype.star = function(_id, callback) {
+  todoModel.findOne({_id: _id}).exec(function(err, result) {
+    todoModel.update({ _id: _id}, { $set: { stared: !result.stared }}, callback);
+  });
 }
 
 module.exports = new Todo();

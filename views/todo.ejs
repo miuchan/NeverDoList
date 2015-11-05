@@ -8,15 +8,15 @@
         <div class="col s9">
           <div class="collection z-depth-2">
           <% todoList.forEach(function (todo) { %>
-            <div class="collection-item">
+            <div class="collection-item" data-id="<%= todo._id %>">
               <div class="row">
                 <p class="left col s10">
-                  <input type="checkbox" id="<%= todo._id %>" />
+                  <input type="checkbox" class="done" id="<%= todo._id %>" />
                   <label for="<%= todo._id %>" style="color:#333"><%= todo.content %></label>
                 </p>
                 <h6 class="left" style="margin-left:44px"><%= todo.deadline%></h6>
-                  <a href="#" class="right col s1"><i class="material-icons">delete</i></a>
-                  <a href="#" class="right col s1"><i class="material-icons">
+                  <a href="javascript:void(0);" class="right col s1 delete"><i class="material-icons">delete</i></a>
+                  <a href="javascript:void(0);" class="right col s1 star"><i class="material-icons">
                 <% if(todo.stared) {%>
                   star
                 <%} else { %>
@@ -40,6 +40,51 @@
       $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15 // Creates a dropdown of 15 years to control year
+      });
+
+      $('.star').click(function (e) {
+        var id = $(e.target).parents().parent('.collection-item').data('id');
+        $.ajax({
+          url: 'http://' + window.location.host + '/stared',
+          method: 'post',
+          data: {id: id},
+          success: function (data) {
+            console.log(data);
+            if(data.success) {
+              $(e.target).html()=="star" ? $(e.target).html('star_border'):$(e.target).html('star');
+            }
+          }
+        });
+      });
+
+      $('.delete').click(function (e) {
+        var id = $(e.target).parents().parent('.collection-item').data('id');
+        $.ajax({
+          url: 'http://' + window.location.host + '/delete',
+          method: 'post',
+          data: {id: id},
+          success: function (data) {
+            console.log(data);
+            if(data.success) {
+              $(e.target).parents().parent('.collection-item').fadeOut();
+            }
+          }
+        });
+      });
+
+      $('.done').click(function(e) {
+        var id = $(e.target).parents().parent('.collection-item').data('id');
+        $.ajax({
+          url: 'http://' + window.location.host + '/done',
+          method: 'post',
+          data: {id: id},
+          success: function (data) {
+            console.log(data);
+            if(data.success) {
+              $(e.target).parents().parent('.collection-item').fadeOut();
+            }
+          }
+        });
       });
     </script>
   </body>
