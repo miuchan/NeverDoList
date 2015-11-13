@@ -1,12 +1,33 @@
 var express = require('express');
+var session = require('express-session');
 var Todo = require('../models/todo');
+var User = require('../models/user');
 var router = express.Router();
 
 router.get(['/', '/todo'], function(req, res, next) {
   Todo.get({deleted: false, done: false}, function (err, todoList) {
     res.render('todo', { title: '未完成', username: '雨宫美羽', todoList: todoList });
   });
+});
 
+router.get('/reg', function(req, res, next) {
+  var user = {
+    username: req.body.username,
+    password: req.body.password
+  }
+  User.add(user, function(err) {
+    if(err) {
+      return console.log(err);
+    }
+    var options = {
+      'username': req.body.username,
+      'ttl': 60 * 60 * 24 * 30
+    }
+    app.use(session({
+
+    }));
+    res.render('reg', { title: '未完成', username: '雨宫美羽'});
+  });
 
 });
 

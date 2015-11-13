@@ -11,7 +11,6 @@ var todoSchema = mongoose.Schema({
 
 var todoModel = mongoose.model('todo', todoSchema);
 
-
 var Todo = function Todo() {
 }
 
@@ -33,16 +32,16 @@ Todo.prototype.get = function (condition, callback) {
   todoModel.find(condition).sort({createAt:-1}).exec(callback);
 };
 Todo.prototype.delete = function(_id, callback) {
-  todoModel.update({ _id: _id}, { $set: { deleted: true}}, callback);
+  todoModel.update({ _id: _id }, { $set: { deleted: true}}, callback);
 }
 
 Todo.prototype.done = function(_id, callback) {
-  todoModel.update({ _id: _id}, { $set: { done: true}}, callback);
+  todoModel.update({ _id: _id }, { $set: { done: true}}, callback);
 }
 
 Todo.prototype.star = function(_id, callback) {
-  todoModel.findOne({_id: _id}).exec(function(err, result) {
-    todoModel.update({ _id: _id}, { $set: { stared: !result.stared }}, callback);
+  todoModel.findOne({_id: _id }).exec(function(err, result) {
+    todoModel.update({ _id: _id }, { $set: { stared: !result.stared }}, callback);
   });
 }
 

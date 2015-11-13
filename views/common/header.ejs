@@ -16,11 +16,16 @@
 
   </head>
   <body>
-    <nav style="margin-bottom:2em" class="">
+    <nav style="margin-bottom:2em">
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Never Do List</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#"><%= username %></a></li>
+        <a style="margin-left:15%" href="/" class="brand-logo">Never Do List</a>
+        <ul id="nav-mobile" style="margin-right:15%" class="right hide-on-med-and-down">
+          <%if(username) {%>
+            <li><a href="#"><%= username %></a></li>
+          <%} else {%>
+            <li><a href="/reg">注册</a></li>
+            <li><a href="/login">登录</a></li>
+          <%}%>
         </ul>
       </div>
     </nav>

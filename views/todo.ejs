@@ -37,11 +37,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="javascripts/materialize.min.js"></script>
     <script type="text/javascript">
-      $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
-      });
-
       $('.star').click(function (e) {
         var id = $(e.target).parents().parent('.collection-item').data('id');
         $.ajax({
