@@ -1,5 +1,4 @@
 var express = require('express');
-var session = require('express-session');
 var Todo = require('../models/todo');
 var User = require('../models/user');
 var router = express.Router();
@@ -11,22 +10,53 @@ router.get(['/', '/todo'], function(req, res, next) {
 });
 
 router.get('/reg', function(req, res, next) {
+  res.render('reg', { title: '注册帐号', username: null });
+});
+
+router.post('/reg', function(req, res, next) {
   var user = {
     username: req.body.username,
     password: req.body.password
   }
-  User.add(user, function(err) {
+
+  User.get({username: user.username}, function(err, user) {
+    if(user) {
+      res.writeHead(200, { 'Content-Type': 'text/html;charset=UTF-8'});
+      return res.end('用户名已存在！', 'utf8');
+    }
+    User.add(user, function(err) {
+      if(err) {
+        return console.log(err);
+      }
+      req.session.username = user.username;
+      console.log(req.session)
+    });
+  });
+
+
+
+});
+
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: '登录', username: null });
+});
+
+router.post('/login', function(req, res, next) {
+  var username = req.body.username,
+      password = req.body.password;
+  User.get({username: username}, function(err, user) {
     if(err) {
       return console.log(err);
     }
-    var options = {
-      'username': req.body.username,
-      'ttl': 60 * 60 * 24 * 30
+    var user = user;
+    console.log(user);
+    if(username == user.username && password == user.password) {
+      req.session.username = username;
+      res.redirect('/todo');
+    } else {
+      res.writeHead(200, { 'Content-Type': 'text/html;charset=UTF-8'});
+      res.end('用户名或密码错误！');
     }
-    app.use(session({
-
-    }));
-    res.render('reg', { title: '未完成', username: '雨宫美羽'});
   });
 
 });
@@ -67,6 +97,7 @@ router.get('/add', function(req, res, next) {
 
 router.post('/add', function (req, res, next) {
   var todo = {
+    user: req.session._id,
     content: req.body.content,
     deadline: req.body.deadline
   }

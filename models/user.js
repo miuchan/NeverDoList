@@ -21,6 +21,8 @@ User.prototype.add = function (obj, callback) {
   });
 };
 
-User.prototype.get = function(username, callback) {
-  userModel.findOne({ username: username }, callback);
+User.prototype.get = function(condition, callback) {
+  userModel.findOne(condition, callback);
 }
+
+module.exports = new User();

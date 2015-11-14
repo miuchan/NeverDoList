@@ -1,6 +1,7 @@
 var db = require('./db');
 var mongoose = db.mongoose;
 var todoSchema = mongoose.Schema({
+  user: String,
   content: String,
   deadline: String,
   done: { type: Boolean, default: false },
@@ -16,6 +17,7 @@ var Todo = function Todo() {
 
 Todo.prototype.add = function (obj, callback) {
   var todo = {
+    user: obj.username,
     content: obj.content,
     deadline: obj.deadline
   };
