@@ -1,0 +1,33 @@
+<% include common/header %>
+<div class="container">
+  <div class="row">
+    <form class="col s6 offset-s3" action="/reg" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="username" name="username" type="text" class="validate">
+          <label for="username">用户名</label>
+        </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" name="password" type="password" class="validate">
+          <label for="password">密码</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="repassword" name="repassword" type="password" class="validate">
+          <label for="repassword">重复密码</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="center-align">
+          <button class="waves-effect waves-light btn">注册帐号</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="javascripts/materialize.min.js"></script>
+</body>
+</html>
