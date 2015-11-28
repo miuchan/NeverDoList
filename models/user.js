@@ -11,10 +11,10 @@ var User = function user() {
 
 };
 
-User.prototype.add = function (obj, callback) {
+User.prototype.add = function(obj, callback) {
   var auser = new userModel(obj);
-  auser.save(function (err) {
-    if(err) {
+  auser.save(function(err) {
+    if (err) {
       callback(err);
     }
     callback(null);
@@ -23,6 +23,6 @@ User.prototype.add = function (obj, callback) {
 
 User.prototype.get = function(condition, callback) {
   userModel.findOne(condition, callback);
-}
+};
 
 module.exports = new User();
